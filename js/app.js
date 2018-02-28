@@ -12,20 +12,28 @@ function registerPicClick(event) {
 }
 
 var imagesArray = [
-    {name: "Bag", image: "images/bag.jpg" },
-    {name: "Banana", image: "images/banana.jpg"},
-    {name: "Boots", image: "images/boots.jpg"},
-    {name: "Chair", image: "images/chair.jpg"},
-    {name: "Cthulhu", image: "images/cthulhu.jpg"},
-    {name: "Dragon", image: "images/dragon.jpg"},
-    {name: "Pen", image: "images/pen.jpg"},
-    {name: "Scissors", image: "images/scissors.jpg"},
-    {name: "Shark", image: "images/shark.jpg"},
-    {name: "Sweep", image: "images/sweep.jpg"},
-    {name: "Unicorn", image: "images/unicorn.jpg"},
-    {name: "USB", image: "images/usb.jpg"},
-    {name: "Water Can", image: "images/water_can.jpg"},
-    {name: "Wine Glass", image: "images/wine_glass.jpg"}
-]
+    "images/bag.jpg",
+    "images/banana.jpg",
+    "images/boots.jpg",
+    "images/chair.jpg",
+    "images/cthulhu.jpg",
+    "images/dragon.jpg",
+    "images/pen.jpg",
+    "images/scissors.jpg",
+    "images/shark.jpg",
+    "images/sweep.jpg",
+    "images/unicorn.jpg",
+    "images/usb.jpg",
+    "images/water_can.jpg",
+    "images/wine_glass.jpg"
+];
+
+var getRandomItem = imagesArray[Math.floor(Math.random() * imagesArray.length)];
+    document.getElementById("carousel").innerHTML = "<img src='" + getRandomItem + "'>";
+
+for (var index = 0; index < imagesArray.length; index += 1) {
+    var thing = getRandomItem(imagesArray);
+    imagesArray[index].innerHTML = thing.name + '<img src="'+thing.image+'">';
+}
 
 window.addEventListener("load", addListeners);
