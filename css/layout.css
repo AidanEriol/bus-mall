@@ -1,4 +1,8 @@
-img {
+.image {
+    height: 300px;
+}
+
+.image:image {
     height: 300px;
 }
 

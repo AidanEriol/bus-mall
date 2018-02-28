@@ -29,11 +29,22 @@ var imagesArray = [
 ];
 
 var getRandomItem = imagesArray[Math.floor(Math.random() * imagesArray.length)];
-    document.getElementById("carousel").innerHTML = "<img src='" + getRandomItem + "'>";
+    document.getElementsByClassName("image").innerHTML = "<img src='" + getRandomItem + "'>";
 
-for (var index = 0; index < imagesArray.length; index += 1) {
-    var thing = getRandomItem(imagesArray);
-    imagesArray[index].innerHTML = thing.name + '<img src="'+thing.image+'">';
-}
+    function getRandomPicture(imagesArray) {
+        return imagesArray[Math.floor(Math.random()*imagesArray.length)];
+    }
+
+    // function threeRandomImages() {
+    
+    
+
+    var itemAvailable = document.getElementsByClassName("image")
+    // if (var index =0; index <)
+for (var index = 0; index < itemAvailable.length; index ++) {
+    var thing = getRandomPicture(imagesArray);
+    itemAvailable[index].innerHTML = "<img src='"+thing.image+"'>";
+    }
+// }
 
 window.addEventListener("load", addListeners);
