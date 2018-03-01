@@ -28,23 +28,12 @@ var imagesArray = [
     "images/wine_glass.jpg"
 ];
 
-var getRandomItem = imagesArray[Math.floor(Math.random() * imagesArray.length)];
-    document.getElementsByClassName("image").innerHTML = "<img src='" + getRandomItem + "'>";
+window.onload = showPicture;
 
-    function getRandomPicture(imagesArray) {
-        return imagesArray[Math.floor(Math.random()*imagesArray.length)];
-    }
-
-    // function threeRandomImages() {
-    
-    
-
-    var itemAvailable = document.getElementsByClassName("image")
-    // if (var index =0; index <)
-for (var index = 0; index < itemAvailable.length; index ++) {
-    var thing = getRandomPicture(imagesArray);
-    itemAvailable[index].innerHTML = "<img src='"+thing.image+"'>";
-    }
-// }
+function showPicture() {
+    // for (index = 0; index < imagesArray.length; index++) {
+    var randomImage = Math.floor(Math.random() * (imagesArray.length));
+    document.getElementById("image1").innerHTML = "<img src='" + imagesArray[randomImage] + "'>";
+}
 
 window.addEventListener("load", addListeners);
