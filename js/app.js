@@ -62,8 +62,9 @@ var showRandomItem = function() {
             usedItems = [];
         }
     } else {
-        showRandomItem();
+        randomItemUrl();
     }
  }
-
+ 
+    console.log(showRandomItem());
 window.addEventListener("load", addListeners);
