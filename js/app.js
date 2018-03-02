@@ -43,33 +43,24 @@ function randomItemUrl() {
     return imagesArray[randomize].url;
 }
 
-function randomPicture(elementId) {
-    var newPicture = imagesArray[Math.floor(Math.random() * imagesArray.length)];
-    var showPicture = document.getElementById(elementId).innerHTML = "<img src='" + newPicture.url + "'>";
+var showRandomItem = function() {
+    var urlArray = [];
+    var showItem = document.getElementById("carousel");
+
+    while (urlArray.length != 3) {
+        var currentUrl = randomItemUrl();
+        if (urlArray.indexOf(currentUrl) == -1) {
+            urlArray.push(currentUrl);
+        }
+    };
+console.log(urlArray);
+    for (var index = 0; index < urlArray.length; index++) {
+        var img = document.createElement("img");
+        img.setAttribute("src", urlArray[index]);
+        showItem.appendChild(img);
+    }
 }
 
-randomPicture("image1");
-randomPicture("image2");
-randomPicture("image3");
-
-var showRandomItem = function() {
-    var number = Math.floor(Math.random() * (imagesArray.length));
-    var displayProduct = document.getElementById("carousel");
-    // var img = document.createElement("img");
-    if (!usedItems[number]) {
-        document.getElementById("carousel").src = imagesArray[number];
-        usedItems[number] = true;
-        usedItemsCount++;
-        if (usedItemsCount == imagesArray.length){
-            usedItemsCount = 0;
-            usedItems = [];
-        }
-    } else {
-        // img.setAttribute("src", randomItemUrl());
-        // displayProduct.appendChild(img);
-        randomPicture();
-    }
- }
 console.log(showRandomItem());
 
 window.addEventListener("load", addListeners);
