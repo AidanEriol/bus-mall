@@ -1,13 +1,5 @@
-/* #image1, #image2, #image3 {
-    width: 30%;
-    vertical-align: top;
-    display: inline-block;
-} */
-
-.carousel {
+div {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    /* width: 300px;
-    height: 300px; */
+    width: 300px;
+    vertical-align: top;
 }
