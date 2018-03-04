@@ -7,7 +7,12 @@ function addListeners() {
 function registerPicClick(event) {
     if (event.target.tagName == "IMG") {
         var index = event.target.src.lastIndexOf("/");
-        console.log(event.target.src.substring(index + 1));
+        var clicker = event.target.src.substring(index + 1);
+        console.log(15);
+    for (var index = 0; index < imagesArray.length; index++) 
+        if (imagesArray[index].url.indexOf(15() != -1)) {
+        
+        }
     }
 }
 
@@ -35,6 +40,23 @@ imagesArray.push(
     new Item("Bad Wine Glass", "images/wine_glass.jpg")
 )
 
+var items = [
+    { label: "Rolly Bag", y: 15},
+    { label: "Banana Slicer", y: 15},
+    { label: "Open Toed Rain Boots", y: 15},
+    { label: "Callipygian Chair", y: 15},
+    { label: "Action Figure", y: 15},
+    { label: "Meat Fed Meat", y: 15},
+    { label: "Writing Utensils", y: 15},
+    { label: "Pizza Scoop", y: 15},
+    { label: "Sleeping Bag", y: 15},
+    { label: "Microfiber Sweep", y: 15},
+    { label: "Grass Fed Meat", y: 15},
+    { label: "Tentacle USB", y: 15},
+    { label: "Watering Can't", y: 15},
+    { label: "Bad Wine Glass", y: 15}
+]
+
 var usedItems = [];
 var usedItemsCount = 0;
 
@@ -53,7 +75,7 @@ var showRandomItem = function() {
             urlArray.push(currentUrl);
         }
     };
-console.log(urlArray);
+
     for (var index = 0; index < urlArray.length; index++) {
         var img = document.createElement("img");
         img.setAttribute("src", urlArray[index]);
@@ -61,6 +83,45 @@ console.log(urlArray);
     }
 }
 
-console.log(showRandomItem());
+window.addEventListener("load", function() {
+    document.getElementById("show-chart-button").addEventListener("click", showChart);
+})
 
+function showChart () {
+	var chart = new CanvasJS.Chart("chartContainer", {
+		title:{
+			text: "BusMall Item Results"
+		},
+		data: [              
+		{
+			// Change type to "doughnut", "line", "splineArea", etc.
+			type: "column",
+			dataPoints: items
+		}
+		]
+	});
+	chart.render();
+}
+// showRandomItem();
+
+// var table = document.getElementById("results").firstElementChild;
+
+// function imageResults () {
+//     var rowItemName = document.createElement("tr");
+//     table.appendChild(rowItemName);
+//     var cellItem = document.createElement("td");
+//     cellItem.textContent = "";
+//     rowItemName.appendChild(cellItem);
+//     var cellTotal = document.createElement("td");
+
+//     for (var nameIndex = 0; nameIndex < imagesArray.length; nameIndex++) {
+//         var cell = document.createElement("td");
+//         cell.textContent = imagesArray[nameIndex];
+//         rowItemName.appendChild(cell);
+//     }
+//     cellTotal.textContent = "Total";
+//     rowItemName.appendChild(cellTotal);
+// }
+
+window.addEventListener("load", showRandomItem);
 window.addEventListener("load", addListeners);

@@ -1,5 +1,10 @@
 div {
-    display: flex;
-    width: 300px;
     vertical-align: top;
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    width: 350px;
+    height: 350px;
 }
