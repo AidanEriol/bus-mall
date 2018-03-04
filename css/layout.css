@@ -1,5 +1,9 @@
 div {
     display: flex;
-    width: 300px;
+    /* width: 300px; */
     vertical-align: top;
+}
+img {
+    width: 350px;
+    height: 350px;
 }
