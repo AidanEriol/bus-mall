@@ -1,7 +1,5 @@
 "use strict";
 
-
-
 var counter = 0;
 
 function addListeners() {
@@ -16,7 +14,7 @@ function registerPicClick(event) {
         for (var imageIndex = 0; imageIndex < imagesArray.length; imageIndex++) {
             var item = imagesArray[imageIndex];
             if (item.url.indexOf(url) !== -1) {
-                item.clicks++;
+                item.y++;
                 console.log(item);
             }
         }
@@ -32,12 +30,10 @@ function clickTotal() {
     }
 }
 
-
-
 var Item = function (name, url) {
-    this.name = name;
+    this.label = name;
     this.url = url;
-    this.clicks = 0;
+    this.y = 0;
 
 }
 
@@ -85,3 +81,40 @@ var showRandomItem = function () {
 showRandomItem();
 
 window.addEventListener("load", addListeners);
+
+window.addEventListener("load", function() {
+    document.getElementById("show-chart-button").addEventListener("click", showChart);
+})
+
+var items = [
+                { label: "Rolly Bag" },
+                { label: "Banana Slicer"  },
+                { label: "Open Toed Rain Boots" },
+                { label: "Callipygian Chair" },
+                { label: "Action Figure" },
+                { label: "Fresh Meat" },    
+                { label:"Writing Utensils" },
+                { label: "Pizza Scoop" },
+                { label: "Sleeping Bag" },
+                { label: "Microfiber Sweep" },
+                { label: "Grass Fed Meat" },
+                { label: "Tentacle USB" },
+                { label: "Watering Can" },
+                { label: "Bad Wine Glass" },
+];
+ 
+function showChart() {
+	var chart = new CanvasJS.Chart("chartContainer", {
+		title:{
+			text: "Bus Mall Results"              
+		},
+		data: [              
+		{
+			// Change type to "doughnut", "line", "splineArea", etc.
+			type: "column",
+            dataPoints: imagesArray
+        }
+    ]
+	});
+	chart.render();
+}
