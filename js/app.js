@@ -1,20 +1,34 @@
 "use strict";
 
+var counter = 0;
+
 function addListeners() {
     document.getElementById("carousel").addEventListener("click", registerPicClick)
 }
 
 function registerPicClick(event) {
-    if (event.target.tagName == "IMG") {
-        var index = event.target.src.lastIndexOf("/");
-        console.log(event.target.src.substring(index + 1));
+    if (event.target.tagName == "IMG") {         
+       var index = event.target.src.lastIndexOf("/");
+        var url = event.target.src.substring(index + 1);   
+        console.log(url);
+        for (var imageIndex = 0; imageIndex < imagesArray.length; imageIndex++) {
+            var item = imagesArray[imageIndex];
+            if (item.url.indexOf(url) !== -1) {
+            item.clicks++;
+                console.log(item);
+            }
+           
+        }
+        
+        counter++;
     }
 }
 
-var Item = function(name, url, clicks) {
+var Item = function(name, url) {
     this.name = name;
     this.url = url;
     this.clicks = 0;
+
 }
 
 var imagesArray = [];
@@ -34,9 +48,6 @@ imagesArray.push(
     new Item("Watering Can", "images/water_can.jpg"),
     new Item("Bad Wine Glass", "images/wine_glass.jpg")
 )
-
-var usedItems = [];
-var usedItemsCount = 0;
 
 function randomItemUrl() {
     var randomize = Math.floor(Math.random() * imagesArray.length);
