@@ -1,5 +1,7 @@
 "use strict";
 
+
+
 var counter = 0;
 
 function addListeners() {
@@ -20,9 +22,17 @@ function registerPicClick(event) {
         }
         counter++;
         showRandomItem();
+        if (counter == 15) {
+            alert("STOP RIGHT THERE");
     }
-
 }
+
+function clickTotal() {
+
+    }
+}
+
+
 
 var Item = function (name, url) {
     this.name = name;
