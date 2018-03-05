@@ -1,5 +1,7 @@
 "use strict";
 
+var counter = 0;
+
 function addListeners() {
     document.getElementById("carousel").addEventListener("click", registerPicClick)
 }
@@ -7,19 +9,28 @@ function addListeners() {
 function registerPicClick(event) {
     if (event.target.tagName == "IMG") {
         var index = event.target.src.lastIndexOf("/");
-        var clicker = event.target.src.substring(index + 1);
-        console.log(15);
-    for (var index = 0; index < imagesArray.length; index++) 
-        if (imagesArray[index].url.indexOf(15() != -1)) {
-        
+        var url = event.target.src.substring(index + 1);
+        console.log(url);
+        for (var imageIndex = 0; imageIndex < imagesArray.length; imageIndex++) {
+            var item = imagesArray[imageIndex];
+            if (item.url.indexOf(url) !== -1) {
+                item.y++;
+                console.log(item);
+            }
+        }
+        counter++;
+        showRandomItem();
+        if (counter == 15) {
+            alert("STOP RIGHT THERE");
         }
     }
 }
 
-var Item = function(name, url, clicks) {
-    this.name = name;
+var Item = function (name, url) {
+    this.label = name;
     this.url = url;
     this.y = 0;
+
 }
 
 var imagesArray = [];
@@ -36,7 +47,7 @@ imagesArray.push(
     new Item("Microfiber Sweep", "images/sweep.jpg"),
     new Item("Grass Fed Meat", "images/unicorn.jpg"),
     new Item("Tentacle USB", "images/usb.jpg"),
-    new Item("Watering Can't", "images/water_can.jpg"),
+    new Item("Watering Can", "images/water_can.jpg"),
     new Item("Bad Wine Glass", "images/wine_glass.jpg")
 )
 
@@ -45,17 +56,17 @@ function randomItemUrl() {
     return imagesArray[randomize].url;
 }
 
-var showRandomItem = function() {
+var showRandomItem = function () {
     var urlArray = [];
     var showItem = document.getElementById("carousel");
-
-    while (urlArray.length != 3) {
+    showItem.innerHTML = "";
+    while (urlArray.length != 3) { 
         var currentUrl = randomItemUrl();
         if (urlArray.indexOf(currentUrl) == -1) {
             urlArray.push(currentUrl);
         }
     };
-
+    console.log(urlArray);
     for (var index = 0; index < urlArray.length; index++) {
         var img = document.createElement("img");
         img.setAttribute("src", urlArray[index]);
@@ -63,25 +74,25 @@ var showRandomItem = function() {
     }
 }
 
+showRandomItem();
+
+window.addEventListener("load", addListeners);
 window.addEventListener("load", function() {
     document.getElementById("show-chart-button").addEventListener("click", showChart);
 })
 
-function showChart () {
+function showChart() {
 	var chart = new CanvasJS.Chart("chartContainer", {
 		title:{
-			text: "BusMall Item Results"
+			text: "Bus Mall Results"              
 		},
 		data: [              
 		{
 			// Change type to "doughnut", "line", "splineArea", etc.
 			type: "column",
-			dataPoints: items
-		}
-		]
+            dataPoints: imagesArray
+        }
+    ]
 	});
 	chart.render();
 }
-
-window.addEventListener("load", showRandomItem);
-window.addEventListener("load", addListeners);
