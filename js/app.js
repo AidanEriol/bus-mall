@@ -1,5 +1,7 @@
 "use strict";
 
+var counter = 0;
+
 function addListeners() {
     document.getElementById("carousel").addEventListener("click", registerPicClick)
 }
@@ -7,14 +9,32 @@ function addListeners() {
 function registerPicClick(event) {
     if (event.target.tagName == "IMG") {
         var index = event.target.src.lastIndexOf("/");
-        console.log(event.target.src.substring(index + 1));
+        var url = event.target.src.substring(index + 1);
+        console.log(url);
+        for (var imageIndex = 0; imageIndex < imagesArray.length; imageIndex++) {
+            var item = imagesArray[imageIndex];
+            if (item.url.indexOf(url) !== -1) {
+                item.y++;
+                console.log(item);
+            }
+        }
+        counter++;
+        showRandomItem();
+        if (counter == 15) {
+            alert("STOP RIGHT THERE");
     }
 }
 
-var Item = function(name, url, clicks) {
-    this.name = name;
+function clickTotal() {
+
+    }
+}
+
+var Item = function (name, url) {
+    this.label = name;
     this.url = url;
-    this.clicks = 0;
+    this.y = 0;
+
 }
 
 var imagesArray = [];
@@ -35,25 +55,22 @@ imagesArray.push(
     new Item("Bad Wine Glass", "images/wine_glass.jpg")
 )
 
-var usedItems = [];
-var usedItemsCount = 0;
-
 function randomItemUrl() {
     var randomize = Math.floor(Math.random() * imagesArray.length);
     return imagesArray[randomize].url;
 }
 
-var showRandomItem = function() {
+var showRandomItem = function () {
     var urlArray = [];
     var showItem = document.getElementById("carousel");
-
-    while (urlArray.length != 3) {
+    showItem.innerHTML = "";
+    while (urlArray.length != 3) { 
         var currentUrl = randomItemUrl();
         if (urlArray.indexOf(currentUrl) == -1) {
             urlArray.push(currentUrl);
         }
     };
-console.log(urlArray);
+    console.log(urlArray);
     for (var index = 0; index < urlArray.length; index++) {
         var img = document.createElement("img");
         img.setAttribute("src", urlArray[index]);
@@ -61,6 +78,43 @@ console.log(urlArray);
     }
 }
 
-console.log(showRandomItem());
+showRandomItem();
 
 window.addEventListener("load", addListeners);
+
+window.addEventListener("load", function() {
+    document.getElementById("show-chart-button").addEventListener("click", showChart);
+})
+
+var items = [
+                { label: "Rolly Bag" },
+                { label: "Banana Slicer"  },
+                { label: "Open Toed Rain Boots" },
+                { label: "Callipygian Chair" },
+                { label: "Action Figure" },
+                { label: "Fresh Meat" },    
+                { label:"Writing Utensils" },
+                { label: "Pizza Scoop" },
+                { label: "Sleeping Bag" },
+                { label: "Microfiber Sweep" },
+                { label: "Grass Fed Meat" },
+                { label: "Tentacle USB" },
+                { label: "Watering Can" },
+                { label: "Bad Wine Glass" },
+];
+ 
+function showChart() {
+	var chart = new CanvasJS.Chart("chartContainer", {
+		title:{
+			text: "Bus Mall Results"              
+		},
+		data: [              
+		{
+			// Change type to "doughnut", "line", "splineArea", etc.
+			type: "column",
+            dataPoints: imagesArray
+        }
+    ]
+	});
+	chart.render();
+}
