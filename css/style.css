@@ -1,0 +1,44 @@
+body {
+    background-image: url("https://cdn.pixabay.com/photo/2016/11/21/16/22/coffee-1846252_960_720.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: sienna;
+}
+
+h1, h3 {
+    text-align: center;
+    color: #FEFEFE;
+    font-family: 'Montserrat', sans-serif;
+}
+
+img {
+    border-radius: 15px;
+    border-color: #666 3px;
+}
+
+#show-chart-button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #666;
+    background-color: #FEFEFE;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+  
+#show-chart-button:hover {
+      background-color: #F2F1EF
+}
+  
+#show-chart-button:active {
+    background-color: #313131;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}

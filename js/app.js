@@ -10,18 +10,19 @@ function registerPicClick(event) {
     if (event.target.tagName == "IMG") {
         var index = event.target.src.lastIndexOf("/");
         var url = event.target.src.substring(index + 1);
-        console.log(url);
         for (var imageIndex = 0; imageIndex < imagesArray.length; imageIndex++) {
             var item = imagesArray[imageIndex];
             if (item.url.indexOf(url) !== -1) {
                 item.y++;
-                console.log(item);
             }
         }
         counter++;
         showRandomItem();
-        if (counter == 15) {
-            alert("STOP RIGHT THERE");
+        // makes it so that as long as it doesn't have a remainder when divided by 15, it will show the chart again
+        if (counter % 15 == 0) {
+           showChart();
+        } else {
+            document.getElementById("chartContainer").innerHTML="";
         }
     }
 }
@@ -66,7 +67,6 @@ var showRandomItem = function () {
             urlArray.push(currentUrl);
         }
     };
-    console.log(urlArray);
     for (var index = 0; index < urlArray.length; index++) {
         var img = document.createElement("img");
         img.setAttribute("src", urlArray[index]);
@@ -82,17 +82,22 @@ window.addEventListener("load", function() {
 })
 
 function showChart() {
-	var chart = new CanvasJS.Chart("chartContainer", {
-		title:{
-			text: "Bus Mall Results"              
-		},
-		data: [              
-		{
-			// Change type to "doughnut", "line", "splineArea", etc.
-			type: "column",
-            dataPoints: imagesArray
-        }
-    ]
-	});
-	chart.render();
+	var chart = new CanvasJS.Chart("chartContainer",
+	{
+        
+      data: [
+      {
+        type: "line",
+        dataPoints: imagesArray
+      }
+      ]
+    });
+
+ chart.render();
+
+var chartType = document.getElementById('chartType');
+chartType.addEventListener("change",  function() {
+  chart.options.data[0].type = chartType.options[chartType.selectedIndex].value;
+  chart.render();
+});
 }
