@@ -35,6 +35,7 @@ var Item = function (name, url) {
 }
 
 var imagesArray = [];
+if (localStorage.getItem("imagesArray") == null) {
 imagesArray.push(
     new Item("Rolly Bag", "images/bag.jpg"),
     new Item("Banana Slicer", "images/banana.jpg"),
@@ -51,6 +52,9 @@ imagesArray.push(
     new Item("Watering Can", "images/water_can.jpg"),
     new Item("Bad Wine Glass", "images/wine_glass.jpg")
 )
+} else {
+    var imagesArray = JSON.parse(localStorage.getItem("imagesArray"));
+}
 
 function randomItemUrl() {
     var randomize = Math.floor(Math.random() * imagesArray.length);
@@ -72,11 +76,13 @@ var showRandomItem = function () {
         img.setAttribute("src", urlArray[index]);
         showItem.appendChild(img);
     }
+    localStorage.setItem("imagesArray", JSON.stringify(imagesArray));
 }
 
 showRandomItem();
 
 window.addEventListener("load", addListeners);
+
 window.addEventListener("load", function() {
     document.getElementById("show-chart-button").addEventListener("click", showChart);
 })
@@ -84,7 +90,6 @@ window.addEventListener("load", function() {
 function showChart() {
 	var chart = new CanvasJS.Chart("chartContainer",
 	{
-        
       data: [
       {
         type: "line",
