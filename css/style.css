@@ -12,12 +12,25 @@ h1, h3 {
 }
 
 img {
-    border-radius: 15px;
-    border-color: #666 3px;
+    border-radius: 20px;
+    border: 5px #666;
+}
+
+input {
+    margin: 0 auto;
+    display: block;
+}
+
+div {
+    color: #FEFEFE;
+    font-family: 'Muli', sans-serif;
+}
+
+#chartType {
+    font-family: 'Muli', sans-serif;
 }
 
 #show-chart-button {
-    display: inline-block;
     padding: 15px 25px;
     font-size: 24px;
     cursor: pointer;
